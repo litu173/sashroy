@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MediCompare BD — Same medicine. Honest price.</title>
+<meta name="description" content="Search any medicine in Bangladesh by brand or generic name and see every equivalent brand, cheapest first. Download the Android app.">
+<meta name="theme-color" content="#04241c">
+<meta property="og:title" content="MediCompare BD — Same medicine. Honest price.">
+<meta property="og:description" content="21,714 medicines. 240 companies. One honest list, cheapest first.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#04241c; --night-2:#063328; --night-3:#0a4536;
+  --ivory:#f6f1e7; --ivory-2:#ece4d3; --ink:#10201b; --muted:#4c5a54;
+  --gold:#c9a45c; --gold-2:#e2c88f; --mint:#7fe0bf; --mint-2:#3fbf95; --rose:#e98a7a;
+  --serif:"Fraunces", Georgia, serif; --sans:"Inter", system-ui, sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{font-family:var(--sans);background:var(--night);color:var(--ivory);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.serif{font-family:var(--serif)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.gold{color:var(--gold-2)}
+.mint{color:var(--mint)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s var(--ease),backdrop-filter .4s}
+.nav.scrolled{background:rgba(4,36,28,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(201,164,92,.18)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.01em}
+.brand img{width:34px;height:34px;border-radius:9px}
+.nav-links{display:flex;gap:28px;margin-left:auto;font-size:14px}
+.nav-links a{text-decoration:none;opacity:.8;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:0;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--night);box-shadow:0 10px 30px -10px rgba(201,164,92,.6)}
+.btn-gold:hover{box-shadow:0 16px 40px -10px rgba(201,164,92,.75)}
+.btn-ghost{border:1px solid rgba(246,241,231,.3);color:var(--ivory);background:transparent}
+.btn-ghost:hover{border-color:var(--gold-2)}
+.btn-sm{height:40px;padding:0 18px;font-size:14px;white-space:nowrap}
+.btn svg{width:20px;height:20px}
+@media (max-width:820px){.nav-links{display:none}.nav .btn-sm{margin-left:auto}}
+@media (max-width:420px){.brand{font-size:17px}.brand img{width:30px;height:30px}.nav .btn-sm{padding:0 14px}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:
+  radial-gradient(600px 400px at 75% 30%,rgba(63,191,149,.22),transparent 70%),
+  radial-gradient(500px 380px at 15% 80%,rgba(201,164,92,.16),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7.4vw,96px);line-height:.98;letter-spacing:-.02em;margin:18px 0 24px}
+.hero h1 em{font-style:italic;color:var(--gold-2);font-weight:300}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);color:rgba(246,241,231,.78);max-width:560px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero .meta{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.hero .meta div{font-size:13px;color:rgba(246,241,231,.6)}
+.hero .meta b{display:block;font-family:var(--serif);font-size:30px;font-weight:500;color:var(--ivory)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero .phone-stage{order:2}}
+
+/* ---------- phone mockup ---------- */
+.phone-stage{position:relative;display:flex;justify-content:center;perspective:1400px}
+.phone{position:relative;width:min(320px,82vw);aspect-ratio:9/19;border-radius:46px;padding:12px;background:linear-gradient(145deg,#1b2a25,#050b09);box-shadow:0 60px 120px -30px rgba(0,0,0,.7),inset 0 0 0 1.5px rgba(226,200,143,.35);transform:rotateY(-14deg) rotateX(6deg);transition:transform 1.2s var(--ease)}
+.phone:hover{transform:rotateY(-4deg) rotateX(2deg)}
+.screen{position:relative;height:100%;border-radius:36px;overflow:hidden;background:#f5f7f6;color:#111827;font-size:11px}
+.screen .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:20px;z-index:2}
+.s-head{padding:42px 14px 10px;background:#fff;border-bottom:1px solid #eee}
+.s-search{display:flex;align-items:center;gap:6px;height:34px;padding:0 10px;border:1px solid #e5e7eb;border-radius:10px;color:#374151}
+.s-card{margin:10px;background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.s-hero{padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #f1f1f1}
+.s-thumb{width:40px;height:40px;border-radius:10px;border:1px solid #e5e7eb;display:grid;place-items:center;flex-shrink:0;background:#fafafa}
+.s-thumb i{width:18px;height:8px;border-radius:5px;background:#0a7c60;display:block}
+.s-title{font-weight:700;font-size:14px}
+.s-sub{color:#4b5563;font-size:10px}
+.s-save{margin:8px 12px;padding:7px 9px;border-radius:8px;background:#ecfdf7;color:#063d31;font-size:10px}
+.s-row{display:flex;align-items:center;gap:8px;padding:9px 12px;border-top:1px solid #f3f4f6}
+.s-row .p{margin-left:auto;font-weight:700;font-size:12px}
+.s-row .add{height:26px;padding:0 9px;border-radius:7px;background:#0a7c60;color:#fff;font-weight:600;font-size:10px;display:grid;place-items:center}
+.s-badge{font-size:8px;font-weight:700;letter-spacing:.04em;background:#d1fae9;color:#086450;padding:2px 5px;border-radius:4px;margin-left:4px}
+.s-nav{position:absolute;bottom:0;left:0;right:0;height:52px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;color:#6b7280;font-size:9px}
+.s-nav span:nth-child(2){color:#0a7c60;font-weight:700}
+.float-chip{position:absolute;padding:12px 16px;border-radius:16px;background:rgba(6,51,40,.85);backdrop-filter:blur(10px);border:1px solid rgba(226,200,143,.25);font-size:13px;box-shadow:0 20px 40px -12px rgba(0,0,0,.5)}
+.float-chip b{display:block;font-family:var(--serif);font-size:22px;color:var(--gold-2);font-weight:500}
+.chip-a{left:-6%;top:18%}
+.chip-b{right:-4%;bottom:16%}
+@media (max-width:520px){.chip-a{left:0}.chip-b{right:0}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in,.no-js .reveal{opacity:1;transform:none}
+.no-js .pill{opacity:1;transform:none}.no-js .bar i{transform:scaleX(1)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid rgba(201,164,92,.2);padding:22px 0;overflow:hidden;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:56px;animation:slide 40s linear infinite;font-family:var(--serif);font-size:22px;font-style:italic;color:rgba(246,241,231,.7)}
+.marquee span::after{content:"✦";margin-left:56px;color:var(--gold)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:clamp(90px,12vw,160px) 0}
+.sec h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.2vw,68px);line-height:1.04;letter-spacing:-.015em;margin:16px 0 22px}
+.sec h2 em{font-style:italic;color:var(--gold-2);font-weight:300}
+.sec p.lede{font-size:clamp(16px,1.5vw,19px);color:rgba(246,241,231,.75);max-width:640px}
+.ivory{background:var(--ivory);color:var(--ink)}
+.ivory p.lede{color:var(--muted)}
+.ivory .eyebrow{color:#9a7a3c}
+.ivory h2 em{color:#9a7a3c}
+
+/* ---------- story (sticky scrollytelling) ---------- */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.story-visual{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+.story-steps .step{min-height:85svh;display:flex;flex-direction:column;justify-content:center;opacity:.25;transition:opacity .6s var(--ease)}
+.story-steps .step.active{opacity:1}
+.story-steps .num{font-family:var(--serif);font-size:15px;color:#9a7a3c;font-style:italic}
+.story-steps h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.1;margin:10px 0 16px}
+.story-steps p{color:var(--muted);font-size:17px;max-width:470px}
+.board{width:100%;background:#fff;border-radius:28px;padding:28px;box-shadow:0 40px 80px -40px rgba(4,36,28,.35);border:1px solid var(--ivory-2)}
+.board .cap{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#9a7a3c;font-weight:600}
+.board .big{font-family:var(--serif);font-size:clamp(28px,3vw,40px);margin:6px 0 18px;line-height:1.1}
+.pills{display:grid;grid-template-columns:repeat(10,1fr);gap:7px;margin:8px 0 22px}
+.pill{aspect-ratio:2.1/1;border-radius:999px;background:linear-gradient(90deg,#0a7c60 50%,#e8f6f0 50%);border:1px solid #cfe9df;transform:scale(.6);opacity:0;transition:transform .7s var(--ease),opacity .7s var(--ease),background .7s}
+.board[data-step="1"] .pill,.board[data-step="2"] .pill,.board[data-step="3"] .pill,.board[data-step="4"] .pill{transform:none;opacity:1}
+.board[data-step="2"] .pill.hot,.board[data-step="3"] .pill.hot{background:linear-gradient(90deg,var(--rose) 50%,#fbe7e3 50%);border-color:#f3c8bf}
+.board[data-step="4"] .pill.cheap{background:linear-gradient(90deg,var(--gold) 50%,#f7eedb 50%);border-color:#ead7ad}
+.pill:nth-child(odd){transition-delay:.05s}.pill:nth-child(3n){transition-delay:.12s}
+.board .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px}
+.board .legend div{padding:14px;border-radius:16px;background:#f7f4ec}
+.board .legend b{display:block;font-family:var(--serif);font-size:26px;font-weight:500}
+.board .stage-text{min-height:48px;color:var(--muted);font-size:15px;margin-top:16px}
+@media (max-width:900px){
+  .story{grid-template-columns:1fr;gap:0}
+  .story-visual{top:64px;height:auto;padding:18px 0;z-index:2;background:var(--ivory)}
+  .board{padding:16px 18px;border-radius:20px}.board .big{font-size:24px;margin:4px 0 10px}
+  .board .legend,.board .stage-text{display:none}
+  .pills{gap:5px;margin:4px 0 2px}
+  .story-steps .step{min-height:75svh;padding-top:30px}
+}
+
+/* ---------- numbers ---------- */
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,164,92,.2);border:1px solid rgba(201,164,92,.2);border-radius:28px;overflow:hidden;margin-top:56px}
+.numbers div{background:var(--night);padding:36px 28px}
+.numbers b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.5vw,60px);color:var(--ivory);line-height:1}
+.numbers span{display:block;margin-top:12px;font-size:14px;color:rgba(246,241,231,.65)}
+@media (max-width:820px){.numbers{grid-template-columns:1fr 1fr}}
+
+/* ---------- price gaps ---------- */
+.gaps{margin-top:56px;display:grid;gap:14px}
+.gap{display:grid;grid-template-columns:260px 1fr 120px;gap:24px;align-items:center;padding:20px 24px;border-radius:20px;background:var(--night-2);border:1px solid rgba(246,241,231,.06)}
+.gap h4{font-family:var(--serif);font-weight:500;font-size:19px}
+.gap small{color:rgba(246,241,231,.6);font-size:13px}
+.bar{position:relative;height:12px;border-radius:99px;background:rgba(246,241,231,.08)}
+.bar i{position:absolute;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,var(--mint-2),var(--gold),var(--rose));transform-origin:left;transform:scaleX(0);transition:transform 1.6s var(--ease)}
+.gap.in .bar i{transform:scaleX(1)}
+.bar .lo,.bar .hi{position:absolute;top:18px;font-size:12px;color:rgba(246,241,231,.7);white-space:nowrap}
+.bar .hi{transform:translateX(-100%)}
+.gap .x{text-align:right;font-family:var(--serif);font-size:30px;color:var(--gold-2)}
+.gap .x small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+@media (max-width:820px){.gap{grid-template-columns:1fr auto;padding:18px 18px 34px}.gap .bar{grid-column:1/-1;order:3}}
+.note{margin-top:22px;font-size:13px;color:rgba(246,241,231,.55)}
+
+/* ---------- truths ---------- */
+.truths{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+.truth{padding:34px;border-radius:26px;background:#fff;border:1px solid var(--ivory-2);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.truth:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(4,36,28,.3)}
+.truth .tag{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:6px 10px;border-radius:99px;background:#fbe7e3;color:#8a3324}
+.truth h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;margin:16px 0 10px}
+.truth p{color:var(--muted)}
+.truth .fix{margin-top:18px;padding-top:16px;border-top:1px dashed #d9cfb8;font-size:15px;color:var(--ink)}
+.truth .fix b{color:#086450}
+@media (max-width:820px){.truths{grid-template-columns:1fr}}
+
+/* ---------- features ---------- */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.feature{position:relative;padding:30px;border-radius:24px;background:linear-gradient(160deg,var(--night-2),var(--night));border:1px solid rgba(246,241,231,.07);overflow:hidden;transition:border-color .4s,transform .5s var(--ease)}
+.feature:hover{border-color:rgba(201,164,92,.5);transform:translateY(-4px)}
+.feature::after{content:"";position:absolute;inset:auto -40% -60% auto;width:220px;height:220px;background:radial-gradient(circle,rgba(127,224,191,.12),transparent 70%)}
+.feature .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(201,164,92,.12);color:var(--gold-2)}
+.feature .ic svg{width:22px;height:22px}
+.feature h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:20px 0 8px}
+.feature p{font-size:15px;color:rgba(246,241,231,.7)}
+.feature.wide{grid-column:span 2}
+@media (max-width:980px){.features{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.features{grid-template-columns:1fr}.feature.wide{grid-column:auto}}
+
+/* ---------- how ---------- */
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;counter-reset:how}
+.how li{list-style:none;padding-top:24px;border-top:1px solid #cdbf9f}
+.how li::before{counter-increment:how;content:"0" counter(how);font-family:var(--serif);font-style:italic;color:#9a7a3c;font-size:18px}
+.how h4{font-family:var(--serif);font-weight:500;font-size:22px;margin:10px 0 8px}
+.how p{color:var(--muted);font-size:15px}
+@media (max-width:820px){.how{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.how{grid-template-columns:1fr}}
+
+/* ---------- download ---------- */
+.download{position:relative;overflow:hidden}
+.download::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 400px at 80% 10%,rgba(201,164,92,.18),transparent 70%),radial-gradient(600px 400px at 0% 100%,rgba(63,191,149,.15),transparent 70%)}
+.dl-card{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding:clamp(28px,5vw,64px);border-radius:36px;background:rgba(6,51,40,.6);border:1px solid rgba(226,200,143,.25);backdrop-filter:blur(8px)}
+.stores{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.store{display:flex;align-items:center;gap:14px;min-width:230px;padding:14px 22px;border-radius:18px;text-decoration:none;transition:transform .35s var(--ease),background .3s}
+.store svg{width:30px;height:30px;flex-shrink:0}
+.store small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.store b{font-size:18px;font-weight:600}
+.store.android{background:var(--ivory);color:var(--night)}
+.store.android:hover{transform:translateY(-3px);background:#fff}
+.store.ios{border:1px solid rgba(246,241,231,.25);color:rgba(246,241,231,.7);cursor:not-allowed}
+.qr{justify-self:center;text-align:center}
+.qr .frame{width:220px;padding:14px;border-radius:24px;background:var(--ivory);box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.qr p{margin-top:14px;font-size:13px;color:rgba(246,241,231,.65)}
+.steps-mini{margin-top:30px;display:grid;gap:10px;font-size:14px;color:rgba(246,241,231,.78)}
+.steps-mini li{list-style:none;display:flex;gap:12px}
+.steps-mini li span{flex-shrink:0;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(201,164,92,.18);color:var(--gold-2);font-size:12px;font-weight:700}
+@media (max-width:860px){.dl-card{grid-template-columns:1fr}.qr{display:none}}
+
+/* ---------- faq ---------- */
+.faq{max-width:820px;margin:48px auto 0}
+.faq details{border-bottom:1px solid #d9cfb8;padding:22px 0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:var(--serif);font-size:21px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);font-weight:300;font-size:26px;line-height:1;color:#9a7a3c;transition:transform .4s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--muted);margin-top:12px;max-width:700px}
+
+/* ---------- footer ---------- */
+footer{padding:70px 0 50px;border-top:1px solid rgba(201,164,92,.2);font-size:14px;color:rgba(246,241,231,.6)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer h5{color:var(--ivory);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+footer a{display:block;text-decoration:none;margin:6px 0}
+footer a:hover{color:var(--gold-2)}
+footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241,231,.08);font-size:12px;line-height:1.7}
+@media (max-width:720px){footer .wrap{grid-template-columns:1fr}}
+
+/* progress line */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,var(--mint),var(--gold));transform-origin:left;transform:scaleX(0);z-index:60}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal,.pill,.bar i{transition:none!important;opacity:1!important;transform:none!important}
+  .marquee .track{animation:none}
+  .phone{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="icon.svg" alt="">MediCompare<span class="gold">&nbsp;BD</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#story">The problem</a>
+      <a href="#truths">What&rsquo;s wrong</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" href="#download">Get the app</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow reveal">Bangladesh&rsquo;s honest medicine price guide</p>
+      <h1 class="reveal d1">Same medicine.<br><em>Honest</em> price.</h1>
+      <p class="lead reveal d2">In Bangladesh, the same active ingredient is sold under dozens of brand names, and the price can double or triple depending on whose name is on the strip. MediCompare puts every equivalent brand side by side, cheapest first. Then it delivers to your door.</p>
+      <div class="cta reveal d3">
+        <a class="btn btn-gold" href="#download">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 10-.66-.38l-1.86 3.22a11.5 11.5 0 00-9.84 0L5.22 5.92a.38.38 0 10-.66.38L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/></svg>
+          Download for Android
+        </a>
+        <a class="btn btn-ghost" href="#story">See the story ↓</a>
+      </div>
+      <div class="meta reveal d3">
+        <div><b data-count="21714">21,714</b>medicines listed</div>
+        <div><b data-count="240">240</b>pharma companies</div>
+        <div><b data-count="1992">1,992</b>medicines with rival brands</div>
+      </div>
+    </div>
+
+    <div class="phone-stage reveal d2" aria-hidden="true">
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="s-head"><div class="s-search">⌕ napa</div></div>
+          <div class="s-card">
+            <div class="s-hero">
+              <div class="s-thumb"><i></i></div>
+              <div><div class="s-title">Napa 500 mg</div><div class="s-sub">Tablet · Paracetamol</div><div style="font-weight:700;margin-top:2px">৳1.20<span class="s-sub">/tablet</span></div></div>
+            </div>
+            <div class="s-save">↘ <b>71 cheaper equivalents</b>, save up to 58%</div>
+            <div class="s-row"><div><b>Neopara</b><span class="s-badge">CHEAPEST</span><div class="s-sub">৳0.50 / tablet</div></div><span class="p"></span><span class="add">Add</span></div>
+            <div class="s-row"><div><b>Promel</b><div class="s-sub">৳0.53 / tablet</div></div><span class="p"></span><span class="add">Add</span></div>
+            <div class="s-row"><div><b>Centamol</b><div class="s-sub">৳0.55 / tablet</div></div><span class="p"></span><span class="add">Add</span></div>
+            <div class="s-row"><div><b>Hepa</b><div class="s-sub">৳0.55 / tablet</div></div><span class="p"></span><span class="add">Add</span></div>
+          </div>
+          <div class="s-nav"><span>Home</span><span>Search</span><span>Orders</span><span>Cart</span><span>Account</span></div>
+        </div>
+      </div>
+      <div class="float-chip chip-a"><b>58% less</b>same paracetamol</div>
+      <div class="float-chip chip-b"><b>74 brands</b>one molecule</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Same molecule</span><span>Same strength</span><span>Same form</span><span>Different price</span><span>Cheapest first</span><span>Delivered to your door</span>
+    <span>Same molecule</span><span>Same strength</span><span>Same form</span><span>Different price</span><span>Cheapest first</span><span>Delivered to your door</span>
+  </div>
+</div>
+
+<!-- ================= STORY ================= -->
+<section class="sec ivory" id="story">
+  <div class="wrap">
+    <p class="eyebrow reveal">Chapter one · The problem nobody explains</p>
+    <h2 class="reveal d1">One strip of paracetamol.<br><em>Seventy-four</em> prices.</h2>
+    <div class="story">
+      <div class="story-visual">
+        <div class="board" id="board" data-step="0">
+          <p class="cap">Paracetamol 500 mg · tablet</p>
+          <p class="big" id="board-title">Same chemical, same dose</p>
+          <div class="pills" id="pills"></div>
+          <div class="legend">
+            <div><span>Cheapest brand</span><b class="mint" style="color:#086450">৳0.35</b></div>
+            <div><span>Most expensive</span><b style="color:#a3402e">৳1.30</b></div>
+          </div>
+          <p class="stage-text" id="board-text">Every pill here has exactly the same active ingredient.</p>
+        </div>
+      </div>
+      <div class="story-steps">
+        <div class="step" data-step="1">
+          <span class="num">i.</span>
+          <h3>Same chemical, same dose, same form.</h3>
+          <p>Paracetamol 500 mg is paracetamol 500 mg. Bangladesh&rsquo;s drug regulator holds every registered brand to the same standard. In this dataset alone, 74 companies sell this exact tablet.</p>
+        </div>
+        <div class="step" data-step="2">
+          <span class="num">ii.</span>
+          <h3>Yet the label decides what you pay.</h3>
+          <p>The cheapest listed brand costs ৳0.35 a tablet. The most expensive costs ৳1.30, nearly four times more for an identical molecule. For a cough syrup it&rsquo;s small change. For medicine you take every day for life, it adds up to rent money.</p>
+        </div>
+        <div class="step" data-step="3">
+          <span class="num">iii.</span>
+          <h3>And nobody shows you the list.</h3>
+          <p>Prescriptions name a brand, not the chemical. Shelves show one or two options. Most patients never learn a cheaper equal exists, and when their brand runs out they assume the medicine is gone.</p>
+        </div>
+        <div class="step" data-step="4">
+          <span class="num">iv.</span>
+          <h3>MediCompare shows you all of it.</h3>
+          <p>Search the brand on your prescription or the chemical printed on the strip. You get every equivalent, matched by generic, strength and form, ranked by price per tablet, ml or gram. Pick the one that fits your pocket, with your doctor&rsquo;s OK.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NUMBERS + GAPS ================= -->
+<section class="sec" id="numbers">
+  <div class="wrap">
+    <p class="eyebrow reveal">Chapter two · What the data says</p>
+    <h2 class="reveal d1">The gap isn&rsquo;t a rumour.<br><em>It&rsquo;s in the price list.</em></h2>
+    <p class="lede reveal d2">We matched 21,714 medicines by active ingredient, strength and dosage form. Here is what an honest comparison shows.</p>
+
+    <div class="numbers reveal">
+      <div><b data-count="21714">21,714</b><span>medicine brands &amp; strengths listed</span></div>
+      <div><b data-count="1992">1,992</b><span>medicines sold under two or more brands</span></div>
+      <div><b data-count="444">444</b><span>where the priciest brand costs at least 2× the cheapest</span></div>
+      <div><b data-count="240">240</b><span>companies compared on equal terms</span></div>
+    </div>
+
+    <div class="gaps" id="gaps"></div>
+    <p class="note">Price per unit from an open, MedEx-derived dataset (a past snapshot). Prices change, so the app always shows its current list. Outlier prices that look like data errors are excluded.</p>
+  </div>
+</section>
+
+<!-- ================= TRUTHS ================= -->
+<section class="sec ivory" id="truths">
+  <div class="wrap">
+    <p class="eyebrow reveal">Chapter three · What&rsquo;s broken</p>
+    <h2 class="reveal d1">Four habits that keep<br>prices <em>in the dark</em>.</h2>
+    <p class="lede reveal d2">These aren&rsquo;t one company&rsquo;s fault. They&rsquo;re how the whole market works today, and every patient pays for them.</p>
+    <div class="truths">
+      <article class="truth reveal">
+        <span class="tag">Hidden prices</span>
+        <h3>Prices aren&rsquo;t shown side by side.</h3>
+        <p>Each brand&rsquo;s price is printed on its own box. To compare, you&rsquo;d have to see every box of every brand at once, and no shop shelf holds all 74 paracetamols.</p>
+        <p class="fix"><b>What we do:</b> one list, every equivalent brand, cheapest first, priced per unit so bottle sizes and box sizes compare fairly.</p>
+      </article>
+      <article class="truth reveal d1">
+        <span class="tag">Brand-only prescribing</span>
+        <h3>The prescription names a brand, not the chemical.</h3>
+        <p>When only a brand name is written, patients take it as the only option. Brand promotion aimed at prescribers rewards that habit. The patient pays for it at the counter.</p>
+        <p class="fix"><b>What we do:</b> search the prescribed brand and see its generic name plus every equal alternative. Then ask your doctor or pharmacist whether you can switch.</p>
+      </article>
+      <article class="truth reveal">
+        <span class="tag">Margin-led selling</span>
+        <h3>The counter sells what pays best.</h3>
+        <p>When a shop chooses which equivalent to hand over, the one with the better margin often wins. You can&rsquo;t push back on a choice you can&rsquo;t see.</p>
+        <p class="fix"><b>What we do:</b> you choose the brand. The cart even flags a cheaper equal for each item before you pay.</p>
+      </article>
+      <article class="truth reveal d1">
+        <span class="tag">“Out of stock”</span>
+        <h3>A missing brand looks like a missing medicine.</h3>
+        <p>Supply gaps hit one brand at a time. Without a list of equivalents, an empty shelf looks like a dead end, and people skip doses or pay black-market prices.</p>
+        <p class="fix"><b>What we do:</b> when a brand is out, in-stock equivalents are shown right away.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <p class="eyebrow reveal">Chapter four · The good side</p>
+    <h2 class="reveal d1">Everything a pharmacy should be.<br><em>Out in the open.</em></h2>
+    <div class="features">
+      <article class="feature wide reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+        <h3>Search by brand or by chemical</h3>
+        <p>Type “Napa” or “Paracetamol”, either works. Instant suggestions as you type, across 21,714 medicines, 1,711 generics and 240 companies. The medicine you searched for heads the list, with every cheaper equivalent below it.</p>
+      </article>
+      <article class="feature reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <h3>Cheapest first, priced fairly</h3>
+        <p>Ranked by price per tablet, ml or gram, so a 60 ml bottle and a 100 ml bottle compare fairly. You see exactly how much you save.</p>
+      </article>
+      <article class="feature reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>True equivalents only</h3>
+        <p>Matched by generic, strength and dosage form. Extended-release is never mixed with regular tablets, and outlier prices are flagged.</p>
+      </article>
+      <article class="feature reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg></div>
+        <h3>Stock-aware alternatives</h3>
+        <p>Brand out of stock? In-stock equivalents show up straight away, so a supply gap never leaves you without medicine.</p>
+      </article>
+      <article class="feature reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11L21 7H6"/></svg></div>
+        <h3>A smart cart</h3>
+        <p>Buy single strips or full boxes. Prices and stock are checked again on the server, and every item gets a “same medicine, cheaper” hint.</p>
+      </article>
+      <article class="feature wide reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 15h3"/></svg></div>
+        <h3>Checkout made for Bangladesh</h3>
+        <p>Order as a guest or with an account, with email or Google sign-in. Pick your division, then district, then thana: all 64 districts and every upazila, plus the Dhaka and Chattogram city thanas. Upload a prescription, pay cash on delivery, and get free delivery above a set amount. bKash, Nagad and cards are coming soon.</p>
+      </article>
+      <article class="feature reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Live order tracking</h3>
+        <p>A timeline that marks each step as it happens: placed, confirmed, packed, out for delivery. You get your rider&rsquo;s name and a one-tap call button.</p>
+      </article>
+      <article class="feature reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></div>
+        <h3>Packed with a checklist</h3>
+        <p>Pharmacists check every item against its photo, strength, maker and quantity. An order can&rsquo;t be sealed until every line is ticked, so nothing goes missing or gets mixed up.</p>
+      </article>
+      <article class="feature reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5V5a2 2 0 012-2h12v18H6a2 2 0 01-2-1.5z"/><path d="M8 7h6M8 11h6"/></svg></div>
+        <h3>Drug information built in</h3>
+        <p>Indications, dosage, side effects, interactions, pregnancy advice and storage, written for every generic.</p>
+      </article>
+      <article class="feature reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Web and mobile</h3>
+        <p>A fast, phone-first website and a native app for Android, with iPhone coming soon. Your orders and addresses go with you.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW ================= -->
+<section class="sec ivory" id="how">
+  <div class="wrap">
+    <p class="eyebrow reveal">Chapter five · How it works</p>
+    <h2 class="reveal d1">From prescription to doorstep<br>in <em>four</em> calm steps.</h2>
+    <ol class="how">
+      <li class="reveal"><h4>Search</h4><p>Type the brand on your prescription, or the chemical name on the strip.</p></li>
+      <li class="reveal d1"><h4>Compare</h4><p>See every equivalent, cheapest first, with stock and savings shown.</p></li>
+      <li class="reveal d2"><h4>Order</h4><p>Add to cart, choose your thana, attach the prescription and pay on delivery.</p></li>
+      <li class="reveal d3"><h4>Track</h4><p>Watch your order get confirmed, checked, packed and brought to your door.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= DOWNLOAD ================= -->
+<section class="sec download" id="download">
+  <div class="wrap">
+    <div class="dl-card reveal">
+      <div>
+        <p class="eyebrow">Get the app</p>
+        <h2 style="margin-bottom:14px">Carry the <em>honest list</em><br>in your pocket.</h2>
+        <p class="lede">The Android test build is ready now. Install it, compare in seconds and order from anywhere.</p>
+        <div class="stores">
+          <a class="store android" id="apk" href="https://github.com/litu173/medicompare-mobile/releases/download/latest-android/medicompare.apk">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 10-.66-.38l-1.86 3.22a11.5 11.5 0 00-9.84 0L5.22 5.92a.38.38 0 10-.66.38L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/></svg>
+            <span><small>Download for</small><b>Android · APK</b></span>
+          </a>
+          <span class="store ios" aria-disabled="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.26 1.85-3.35 1.93-3.4-1.05-1.54-2.69-1.75-3.27-1.77-1.39-.14-2.72.82-3.42.82-.71 0-1.79-.8-2.95-.78-1.52.02-2.92.88-3.7 2.24-1.58 2.74-.4 6.79 1.13 9.01.75 1.08 1.64 2.3 2.81 2.26 1.13-.05 1.56-.73 2.92-.73 1.36 0 1.75.73 2.94.71 1.22-.02 1.99-1.1 2.73-2.19.86-1.25 1.21-2.47 1.23-2.53-.03-.01-2.36-.9-2.35-3.64zM14.13 5.97c.62-.76 1.04-1.8.93-2.85-.9.04-1.99.6-2.63 1.35-.58.66-1.09 1.73-.95 2.75 1 .08 2.03-.51 2.65-1.25z"/></svg>
+            <span><small>Coming soon</small><b>iPhone</b></span>
+          </span>
+        </div>
+        <ol class="steps-mini">
+          <li><span>1</span><div>Tap <b>Download for Android</b> on your phone, or scan the QR code.</div></li>
+          <li><span>2</span><div>Open the file and allow “Install unknown apps” for your browser. It&rsquo;s a test build, not on the Play Store yet.</div></li>
+          <li><span>3</span><div>In the app, go to Account → Server address and enter the server you&rsquo;re testing against.</div></li>
+        </ol>
+      </div>
+      <div class="qr">
+        <div class="frame"><img src="qr-android.svg" alt="QR code to download the Android app" width="192" height="192"></div>
+        <p>Scan with your phone&rsquo;s camera</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec ivory" id="faq">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center">Questions</p>
+    <h2 class="reveal d1" style="text-align:center">Asked, <em>answered</em>.</h2>
+    <div class="faq reveal">
+      <details open><summary>Is a cheaper brand really the same medicine?</summary><p>We only call two products equivalent when they have the same generic (active ingredient), the same strength and the same dosage form. Extended- and delayed-release versions are kept separate. Fillers and coatings can differ, so always ask your doctor or pharmacist before switching.</p></details>
+      <details><summary>Where do the prices come from?</summary><p>Our catalogue is built from an open, MedEx-derived dataset of medicines sold in Bangladesh. Prices change and the snapshot can contain errors, so prices that look wrong are marked “price unverified” and left out of savings claims. The pharmacy confirms the final price on your order.</p></details>
+      <details><summary>Do I need an account to order?</summary><p>No. You can check out as a guest and track your order with its ID and your phone number. Creating an account (email or Google) saves your addresses and order history.</p></details>
+      <details><summary>Do you deliver outside Dhaka?</summary><p>Yes. The checkout covers all 8 divisions, 64 districts and their upazilas, with a lower delivery fee inside Dhaka and free delivery above a set order value.</p></details>
+      <details><summary>Why is the Android app an APK and not on the Play Store?</summary><p>It&rsquo;s a test build so you can try the app today. Play Store and App Store releases come next. Each test build replaces the last, so if an update won&rsquo;t install, uninstall the old version first.</p></details>
+      <details><summary>Is this medical advice?</summary><p>No. MediCompare is a price comparison and ordering service. Follow your doctor&rsquo;s prescription and ask a pharmacist before changing any medicine.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" style="margin:0 0 14px"><img src="icon.svg" alt="">MediCompare<span class="gold">&nbsp;BD</span></a>
+      <p>Same medicine. Honest price. A transparent medicine price guide and pharmacy for Bangladesh.</p>
+    </div>
+    <div>
+      <h5>Product</h5>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#download">Download</a>
+    </div>
+    <div>
+      <h5>Open source</h5>
+      <a href="https://github.com/litu173/medicompare-web">Website code</a>
+      <a href="https://github.com/litu173/medicompare-mobile">Mobile app code</a>
+      <a href="https://github.com/litu173/medicompare-mobile/releases/tag/latest-android">Android releases</a>
+    </div>
+    <p class="fine">Price figures on this page come from an open, MedEx-derived dataset of Bangladeshi medicines (a past snapshot) and show price per tablet or capsule for products with the same generic, strength and dosage form. They describe the market as a whole and make no claim about any individual company&rsquo;s conduct. MediCompare is not a substitute for professional medical advice. Always consult a registered doctor or pharmacist before switching medicines.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+document.documentElement.classList.remove("no-js");
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Butter-smooth scrolling (skipped for people who prefer reduced motion).
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ duration: 1.25, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach((a) =>
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        if (id.length < 2) return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        lenis.scrollTo(el, { offset: id === "#top" ? 0 : -64 });
+      }),
+    );
+  }
+
+  // Nav background + reading progress.
+  const nav = document.getElementById("nav");
+  const bar = document.querySelector(".progress");
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle("scrolled", y > 30);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Real price gaps (per unit, cheapest vs most expensive equivalent brand).
+  const GAPS = [
+    ["Montelukast", "10 mg tablet · asthma & allergy", 83, 7.5, 20.07],
+    ["Cetirizine", "10 mg tablet · allergy", 80, 1.0, 3.01],
+    ["Paracetamol", "500 mg tablet · fever & pain", 74, 0.35, 1.3],
+    ["Metformin", "850 mg tablet · diabetes", 68, 2.5, 7.08],
+    ["Losartan", "50 mg tablet · blood pressure", 59, 4.03, 10.0],
+    ["Omeprazole", "20 mg capsule · acidity", 123, 3.0, 7.1],
+    ["Amlodipine", "5 mg tablet · blood pressure", 60, 2.49, 5.02],
+    ["Azithromycin", "500 mg tablet · antibiotic", 113, 28.0, 55.5],
+  ];
+  const maxHi = Math.max(...GAPS.map((g) => g[4] / g[3]));
+  const gapsEl = document.getElementById("gaps");
+  gapsEl.innerHTML = GAPS.map(([name, sub, n, lo, hi]) => {
+    const x = hi / lo;
+    const w = Math.max(18, (x / maxHi) * 100);
+    const yearly = Math.round((hi - lo) * 365);
+    return `<div class="gap reveal">
+      <div><h4>${name}</h4><small>${sub} · ${n} brands</small></div>
+      <div class="bar" role="img" aria-label="${name}: ৳${lo} to ৳${hi} per unit">
+        <i style="left:0;width:${w}%"></i>
+        <span class="lo">৳${lo.toFixed(2)}</span><span class="hi" style="left:${w}%">৳${hi.toFixed(2)}</span>
+      </div>
+      <div class="x">${x.toFixed(1)}×<small>${yearly > 300 ? "৳" + yearly.toLocaleString() + "/yr at 1 a day" : "price gap"}</small></div>
+    </div>`;
+  }).join("");
+
+  // Story pills: 74 brands of paracetamol (drawn as 40 for clarity).
+  const pills = document.getElementById("pills");
+  pills.innerHTML = Array.from({ length: 40 }, (_, i) =>
+    `<span class="pill ${i > 30 ? "hot" : ""} ${i < 6 ? "cheap" : ""}"></span>`).join("");
+
+  // Reveal on scroll.
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Scrollytelling: the sticky board follows the active story step.
+  const board = document.getElementById("board");
+  const title = document.getElementById("board-title");
+  const text = document.getElementById("board-text");
+  const STAGES = {
+    1: ["Same chemical, same dose", "Every pill here has exactly the same active ingredient."],
+    2: ["Up to 3.7× the price", "Red: the priciest brands. Same molecule, a much bigger bill."],
+    3: ["Most people see one box", "Without a list, you buy whatever is handed to you."],
+    4: ["Now you choose", "Gold: the cheapest equivalents, shown first in MediCompare."],
+  };
+  const steps = document.querySelectorAll(".story-steps .step");
+  const so = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      steps.forEach((s) => s.classList.toggle("active", s === e.target));
+      const n = e.target.dataset.step;
+      board.dataset.step = n;
+      title.textContent = STAGES[n][0];
+      text.textContent = STAGES[n][1];
+    });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  steps.forEach((s) => so.observe(s));
+
+  // Count-up numbers.
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      co.unobserve(e.target);
+      const end = +e.target.dataset.count;
+      if (reduce) return;
+      const t0 = performance.now(), dur = 1600;
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        e.target.textContent = v.toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll("[data-count]").forEach((el) => co.observe(el));
+})();
+</script>
+</body>
+</html>
