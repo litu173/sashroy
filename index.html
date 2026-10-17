@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MediCompare BD — Same medicine. Honest price.</title>
+<title>সাশ্রয় Sashroy — Same medicine. Honest price.</title>
 <meta name="description" content="Search any medicine in Bangladesh by brand or generic name and see every equivalent brand, cheapest first. Download the Android app.">
 <meta name="theme-color" content="#04241c">
-<meta property="og:title" content="MediCompare BD — Same medicine. Honest price.">
+<meta property="og:title" content="সাশ্রয় Sashroy — Same medicine. Honest price.">
 <meta property="og:description" content="21,714 medicines. 240 companies. One honest list, cheapest first.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#04241c; --night-2:#063328; --night-3:#0a4536;
   --ivory:#f6f1e7; --ivory-2:#ece4d3; --ink:#10201b; --muted:#4c5a54;
   --gold:#c9a45c; --gold-2:#e2c88f; --mint:#7fe0bf; --mint-2:#3fbf95; --rose:#e98a7a;
-  --serif:"Fraunces", Georgia, serif; --sans:"Inter", system-ui, sans-serif;
+  --serif:"Fraunces", Georgia, serif; --bangla:"Noto Serif Bengali", "Fraunces", serif; --sans:"Inter", system-ui, sans-serif;
   --ease:cubic-bezier(.2,.7,.1,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -40,6 +40,10 @@ a{color:inherit}
 .nav .wrap{display:flex;align-items:center;gap:24px;height:72px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.01em}
 .brand img{width:34px;height:34px;border-radius:9px}
+.brand .bn{font-family:var(--bangla);font-size:22px;font-weight:700;color:var(--ivory)}
+.brand .latin{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-2);margin-left:2px}
+.bn-line{font-family:var(--bangla);font-size:clamp(20px,2.4vw,28px);color:var(--gold-2);margin:-8px 0 18px;font-weight:500}
+.name-note{font-size:13px;color:rgba(246,241,231,.55);margin-top:6px}
 .nav-links{display:flex;gap:28px;margin-left:auto;font-size:14px}
 .nav-links a{text-decoration:none;opacity:.8;transition:opacity .2s}
 .nav-links a:hover{opacity:1}
@@ -261,7 +265,7 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="icon.svg" alt="">MediCompare<span class="gold">&nbsp;BD</span></a>
+    <a class="brand" href="#top"><img src="icon.svg" alt=""><span class="bn">সাশ্রয়</span><span class="latin">Sashroy</span></a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#story">The problem</a>
       <a href="#truths">What&rsquo;s wrong</a>
@@ -281,7 +285,8 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
     <div>
       <p class="eyebrow reveal">Bangladesh&rsquo;s honest medicine price guide</p>
       <h1 class="reveal d1">Same medicine.<br><em>Honest</em> price.</h1>
-      <p class="lead reveal d2">In Bangladesh, the same active ingredient is sold under dozens of brand names, and the price can double or triple depending on whose name is on the strip. MediCompare puts every equivalent brand side by side, cheapest first. Then it delivers to your door.</p>
+      <p class="bn-line reveal d1" lang="bn">একই ওষুধ, সাশ্রয়ী দামে।</p>
+      <p class="lead reveal d2">In Bangladesh, the same active ingredient is sold under dozens of brand names, and the price can double or triple depending on whose name is on the strip. Sashroy puts every equivalent brand side by side, cheapest first. Then it delivers to your door.</p>
       <div class="cta reveal d3">
         <a class="btn btn-gold" href="#download">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 10-.66-.38l-1.86 3.22a11.5 11.5 0 00-9.84 0L5.22 5.92a.38.38 0 10-.66.38L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/></svg>
@@ -367,7 +372,7 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
         </div>
         <div class="step" data-step="4">
           <span class="num">iv.</span>
-          <h3>MediCompare shows you all of it.</h3>
+          <h3>Sashroy shows you all of it.</h3>
           <p>Search the brand on your prescription or the chemical printed on the strip. You get every equivalent, matched by generic, strength and form, ranked by price per tablet, ml or gram. Pick the one that fits your pocket, with your doctor&rsquo;s OK.</p>
         </div>
       </div>
@@ -550,7 +555,7 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
       <details><summary>Do I need an account to order?</summary><p>No. You can check out as a guest and track your order with its ID and your phone number. Creating an account (email or Google) saves your addresses and order history.</p></details>
       <details><summary>Do you deliver outside Dhaka?</summary><p>Yes. The checkout covers all 8 divisions, 64 districts and their upazilas, with a lower delivery fee inside Dhaka and free delivery above a set order value.</p></details>
       <details><summary>Why is the Android app an APK and not on the Play Store?</summary><p>It&rsquo;s a test build so you can try the app today. Play Store and App Store releases come next. Each test build replaces the last, so if an update won&rsquo;t install, uninstall the old version first.</p></details>
-      <details><summary>Is this medical advice?</summary><p>No. MediCompare is a price comparison and ordering service. Follow your doctor&rsquo;s prescription and ask a pharmacist before changing any medicine.</p></details>
+      <details><summary>Is this medical advice?</summary><p>No. Sashroy is a price comparison and ordering service. Follow your doctor&rsquo;s prescription and ask a pharmacist before changing any medicine.</p></details>
     </div>
   </div>
 </section>
@@ -559,8 +564,9 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
 <footer>
   <div class="wrap">
     <div>
-      <a class="brand" href="#top" style="margin:0 0 14px"><img src="icon.svg" alt="">MediCompare<span class="gold">&nbsp;BD</span></a>
+      <a class="brand" href="#top" style="margin:0 0 14px"><img src="icon.svg" alt=""><span class="bn">সাশ্রয়</span><span class="latin">Sashroy</span></a>
       <p>Same medicine. Honest price. A transparent medicine price guide and pharmacy for Bangladesh.</p>
+      <p class="name-note"><span lang="bn">সাশ্রয়</span> (Sashroy) means “saving” in Bangla.</p>
     </div>
     <div>
       <h5>Product</h5>
@@ -574,7 +580,7 @@ footer .fine{grid-column:1/-1;padding-top:30px;border-top:1px solid rgba(246,241
       <a href="https://github.com/litu173/medicompare-mobile">Mobile app code</a>
       <a href="https://github.com/litu173/medicompare-mobile/releases/tag/latest-android">Android releases</a>
     </div>
-    <p class="fine">Price figures on this page come from an open, MedEx-derived dataset of Bangladeshi medicines (a past snapshot) and show price per tablet or capsule for products with the same generic, strength and dosage form. They describe the market as a whole and make no claim about any individual company&rsquo;s conduct. MediCompare is not a substitute for professional medical advice. Always consult a registered doctor or pharmacist before switching medicines.</p>
+    <p class="fine">Price figures on this page come from an open, MedEx-derived dataset of Bangladeshi medicines (a past snapshot) and show price per tablet or capsule for products with the same generic, strength and dosage form. They describe the market as a whole and make no claim about any individual company&rsquo;s conduct. Sashroy is not a substitute for professional medical advice. Always consult a registered doctor or pharmacist before switching medicines.</p>
   </div>
 </footer>
 
@@ -674,7 +680,7 @@ document.documentElement.classList.remove("no-js");
     1: ["Same chemical, same dose", "Every pill here has exactly the same active ingredient."],
     2: ["Up to 3.7× the price", "Red: the priciest brands. Same molecule, a much bigger bill."],
     3: ["Most people see one box", "Without a list, you buy whatever is handed to you."],
-    4: ["Now you choose", "Gold: the cheapest equivalents, shown first in MediCompare."],
+    4: ["Now you choose", "Gold: the cheapest equivalents, shown first in Sashroy."],
   };
   const steps = document.querySelectorAll(".story-steps .step");
   const so = new IntersectionObserver((entries) => {
