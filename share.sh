@@ -17,6 +17,8 @@ fi
 cloudflared tunnel --no-autoupdate --url "http://localhost:$PORT" >"$LOG" 2>&1 &
 TUNNEL=$!
 trap 'kill $TUNNEL 2>/dev/null' EXIT
+# Keep the Mac from idle-sleeping while sharing; a sleeping Mac drops the tunnel.
+caffeinate -ims -w "$TUNNEL" &
 
 URL=""
 for _ in $(seq 1 30); do
